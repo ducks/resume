@@ -1,0 +1,41 @@
+[person]
+name = "Jake Goldsborough"
+headline = "Software Engineer | DevOps & Automation"
+email = "jobs@jakegoldsborough.com"
+github = "https://github.com/ducks"
+website = "https://jakegoldsborough.com"
+summary = "Versatile Software Engineer with over a decade of experience in software development, DevOps, and automation. Proven ability to design, develop, and optimize scalable systems, reducing operational overhead and improving performance. Passionate about problem-solving, automation, and infrastructure as code. Experienced in working remotely and collaborating with cross-functional teams to deliver efficient, maintainable solutions."
+
+[skills]
+Programming = ["Node.js", "TypeScript", "Python", "Rust", "Ruby"]
+"Cloud & Infrastructure" = ["Terraform", "Kubernetes", "Google Cloud"]
+Frontend = ["React", "Vue.js", "AngularJS", "Ember"]
+"DevOps & CI/CD" = ["Docker", "Git", "NixOS"]
+"Databases & Caching" = ["Postgres", "MySQL", "Redis", "GraphQL"]
+"Operating Systems" = ["Linux/Unix (Debian, Ubuntu, NixOS, macOS)", "BSD"]
+Languages = ["English (Native)", "Swedish (Learning)"]
+
+[[experience]]
+title = "Software Engineer (Infrastructure)"
+company = "Discourse"
+start = "2025"
+end = "current"
+summary = """Currently working on the infrastructure team, where I have focused on AWS credential chain improvements, DevOps automation, and platform engineering. Recently contributed upstream to the AWS SDK for Ruby by implementing an Environment credential provider in SharedConfig, which aligned SDK behavior with AWS CLI and prevented InvalidCredentialSourceError. I added comprehensive test coverage across credential resolution paths with over 23,000 examples. The PR was reviewed, approved, and merged the same day, delivering immediate impact for the Ruby community."""
+
+[[experience]]
+title = "Software Engineer II (Mid-Level)"
+company = "Flashpoint"
+start = "2022"
+end = "2024"
+summary = """Led infrastructure automation initiatives that transformed deployment workflows, reducing setup time from days to hours through Terraform and Kubernetes automation. Designed reusable Terraform modules and built Node.js tools to automate Kubernetes resource creation, while initiating Helm chart development for improved deployment management.
+
+Modernized the technology stack by refactoring a legacy Java-based API into a modern Node.js service, significantly reducing technical debt. Enhanced an AngularJS web application to manage and connect to cloud-based VMs, and developed CI/CD pipelines with Dockerized applications to support the team's AngularJS-to-React migration.
+
+Debugged mission-critical issues in cloud-based Linux VMs, optimizing RDP performance and fixing PulseAudio configurations to enhance system stability. Mentored junior engineers and actively contributed to technical interviews, helping build a stronger engineering team."""
+
+[[experience]]
+title = "Software Engineer"
+company = "Infinity Interactive"
+start = "2010"
+end = "2020"
+summary = """Delivered contract engineering work for Fortune 100 and Fortune 500 companies including Shutterstock, Allegra, and Flashpoint. Improved application performance by 75% through implementing strategic Redis caching solutions. Designed and deployed GraphQL APIs using Node.js and Apollo, optimizing backend data retrieval and dramatically improving response times. Developed and maintained full-stack applications with React and Vue.js, delivering robust solutions across diverse client environments."""

@@ -1,0 +1,15 @@
+person
+  name
+  headline
+  contact:
+    "email: " email
+    "website: " website
+    "github: " github
+  summary
+
+experience
+  company
+  title-duration: title", " start "-" end
+  summary
+
+skills
