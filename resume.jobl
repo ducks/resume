@@ -7,9 +7,9 @@ website = "https://jakegoldsborough.com"
 summary = "Versatile Software Engineer with over a decade of experience in software development, DevOps, and automation. Proven ability to design, develop, and optimize scalable systems, reducing operational overhead and improving performance. Passionate about problem-solving, automation, and infrastructure as code. Experienced in working remotely and collaborating with cross-functional teams to deliver efficient, maintainable solutions."
 
 [skills]
-Programming = ["Node.js", "TypeScript", "Python", "Rust", "Ruby"]
-"Cloud & Infrastructure" = ["Terraform", "Kubernetes", "Google Cloud"]
-Frontend = ["React", "Vue.js", "AngularJS", "Ember"]
+Programming = ["Ruby", "Node.js", "TypeScript", "Python", "Rust"]
+"Cloud & Infrastructure" = ["AWS", "Terraform", "Kubernetes", "Google Cloud"]
+Frontend = ["React", "Vue.js", "AngularJS"]
 "DevOps & CI/CD" = ["Docker", "Git", "NixOS"]
 "Databases & Caching" = ["Postgres", "MySQL", "Redis", "GraphQL"]
 "Operating Systems" = ["Linux/Unix (Debian, Ubuntu, NixOS, macOS)", "BSD"]
@@ -20,22 +20,31 @@ title = "Software Engineer (Infrastructure)"
 company = "Discourse"
 start = "2025"
 end = "current"
-summary = """Currently working on the infrastructure team, where I have focused on AWS credential chain improvements, DevOps automation, and platform engineering. Recently contributed upstream to the AWS SDK for Ruby by implementing an Environment credential provider in SharedConfig, which aligned SDK behavior with AWS CLI and prevented InvalidCredentialSourceError. I added comprehensive test coverage across credential resolution paths with over 23,000 examples. The PR was reviewed, approved, and merged the same day, delivering immediate impact for the Ruby community."""
+highlights = [
+  "Eliminated 16x storage inflation on backups via upload deduplication. Shipped a hardlink-based deduplication pass in Discourse's backup creator that groups uploads by content hash and stores duplicate content once. Reduced one customer site from 432 GB to 26 GB of unique content. Followed up with an ext4-hardlink-limit fallback after finding a single reaction GIF duplicated 246,173 times, turning what would have been 246k redundant S3 downloads into 5.",
+  "Designed pre-provisioning pool for instant trial signups. Architected and shipped a pool of pre-built Discourse sites claimed at signup time, using FOR UPDATE SKIP LOCKED for safe concurrent claiming with graceful fallback to live provisioning. Target signup time of 90s reduced to under 15s. Includes a subdomain-name generator producing 2,805 readable combinations from curated word lists.",
+  "Optimized Ruby/SQL hot paths in core and internal services. Rewrote Discourse's daily category-stats job from per-row Ruby iteration (8 queries per category) to batched SQL aggregation with COUNT(*) FILTER (WHERE ...), achieving an 8.6x speedup at production scale (2,000 categories / 1.6M posts). Separately refactored an internal hosted-sites API endpoint from 27-second timeouts to under 10 seconds by eliminating N+1 Redis lookups and adding a request-scoped tier cache.",
+  "Parallelized CI and restructured build pipelines. Cut a Ruby/Rails service's CI runtime from 10 minutes to 3-4 by parallelizing RSpec across 4 GitHub Actions runners, surfacing and fixing several pre-existing test-isolation bugs in the process. Restructured the build Dockerfile into multi-stage layers so lockfile changes no longer bust source-code caches, cutting code-only deploys from ~10 minutes to ~6.",
+  "Contributed S3 IAM role assumption to Discourse core. Multi-quarter upstream contribution letting Discourse installations use IAM role assumption for S3 instead of long-lived access keys. Worked around a Ruby AWS SDK credential-chain precedence bug, refactored a singleton that was leaking credentials across sites in multisite mode, and collaborated with maintainers through review iteration on a safer simplified release."
+]
 
 [[experience]]
 title = "Software Engineer II (Mid-Level)"
 company = "Flashpoint"
 start = "2022"
 end = "2024"
-summary = """Led infrastructure automation initiatives that transformed deployment workflows, reducing setup time from days to hours through Terraform and Kubernetes automation. Designed reusable Terraform modules and built Node.js tools to automate Kubernetes resource creation, while initiating Helm chart development for improved deployment management.
-
-Modernized the technology stack by refactoring a legacy Java-based API into a modern Node.js service, significantly reducing technical debt. Enhanced an AngularJS web application to manage and connect to cloud-based VMs, and developed CI/CD pipelines with Dockerized applications to support the team's AngularJS-to-React migration.
-
-Debugged mission-critical issues in cloud-based Linux VMs, optimizing RDP performance and fixing PulseAudio configurations to enhance system stability. Mentored junior engineers and actively contributed to technical interviews, helping build a stronger engineering team."""
+highlights = [
+  "Reduced infrastructure setup time from days to hours. Led Terraform and Kubernetes pipeline implementation. Designed reusable Terraform modules and automated Kubernetes resource creation using Node.js. Initiated Helm chart development for better deployment management.",
+  "Eliminated hours of manual work across teams. Enhanced an AngularJS web application to efficiently manage and connect to cloud-based VMs.",
+  "Refactored a legacy Java-based API into a modern Node.js service. Reduced technical debt and simplified maintenance for future feature requests.",
+  "Developed CI/CD pipelines and Dockerized applications. Supported an AngularJS-to-React migration, ensuring seamless frontend transitions and improving local development environments.",
+  "Debugged and resolved mission-critical issues in cloud-based Linux VMs. Optimized RDP performance and fixed PulseAudio configurations, enhancing system stability.",
+  "Mentored junior engineers. Contributed to technical interviews, fostering a culture of continuous learning and collaboration."
+]
 
 [[experience]]
 title = "Software Engineer"
 company = "Infinity Interactive"
 start = "2010"
 end = "2020"
-summary = """Delivered contract engineering work for Fortune 100 and Fortune 500 companies including Shutterstock, Allegra, and Flashpoint. Improved application performance by 75% through implementing strategic Redis caching solutions. Designed and deployed GraphQL APIs using Node.js and Apollo, optimizing backend data retrieval and dramatically improving response times. Developed and maintained full-stack applications with React and Vue.js, delivering robust solutions across diverse client environments."""
+summary = "Contracted full-stack work for Fortune 100 and Fortune 500 companies including Shutterstock, Allegra, and Flashpoint. Built and maintained production applications across Node.js, GraphQL, React, and Vue.js stacks. Notable: improved a high-traffic application's response times by 75% via a Redis caching strategy."
