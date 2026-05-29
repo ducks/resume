@@ -1,0 +1,76 @@
+name: Build and deploy resume
+
+# Build the resume on every push to main and on manual dispatch,
+# then deploy the rendered output (HTML + PDF + assets) to GitHub
+# Pages. The repository's content is just `resume.jobl`; everything
+# under `dist/` is built fresh by srg in CI.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Pages requires these permissions on the workflow's GITHUB_TOKEN.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deploy at a time. If a second push lands while
+# the first is still building, queue rather than collide.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build with srg
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      # Cache srg's compiled binary so we don't recompile on every
+      # run. Keyed off the runner OS only — srg releases independently;
+      # if we want a specific version we'd swap to a `cargo install
+      # srg --version X.Y.Z` and a stricter cache key.
+      - name: Cache cargo bin
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/srg
+          key: ${{ runner.os }}-cargo-bin-srg
+
+      - name: Install srg
+        run: |
+          if ! command -v srg >/dev/null; then
+            cargo install srg
+          fi
+
+      # Ubuntu runners ship Chrome at /usr/bin/google-chrome. srg
+      # uses headless Chrome for PDF rendering and finds it via PATH.
+      # Confirm it's available so the build fails loudly here rather
+      # than mid-render.
+      - name: Verify Chrome is available
+        run: google-chrome --version || chromium --version
+
+      - name: Build resume
+        run: srg --input resume.jobl --out dist
+
+      - name: Upload built site as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
