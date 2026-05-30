@@ -1,0 +1,5 @@
+# Build defaults for this resume. srg picks these up automatically
+# when it sees srg.toml next to the input JOBL. CLI flags still
+# override these if passed.
+theme = "jake"
+out = "dist"
