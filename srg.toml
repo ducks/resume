@@ -2,4 +2,5 @@
 # when it sees srg.toml next to the input JOBL. CLI flags still
 # override these if passed.
 theme = "jake"
+layout = "template.resume"
 out = "dist"
