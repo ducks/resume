@@ -55,8 +55,10 @@ jobs:
       - name: Verify Chrome is available
         run: google-chrome --version || chromium --version
 
+      # Theme and output directory are declared in srg.toml next
+      # to resume.jobl, so we only need to pass --input here.
       - name: Build resume
-        run: srg --input resume.jobl --out dist
+        run: srg --input resume.jobl
 
       - name: Upload built site as Pages artifact
         uses: actions/upload-pages-artifact@v3
