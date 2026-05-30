@@ -32,21 +32,13 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
-      # Cache srg's compiled binary so we don't recompile on every
-      # run. Keyed off the runner OS only — srg releases independently;
-      # if we want a specific version we'd swap to a `cargo install
-      # srg --version X.Y.Z` and a stricter cache key.
-      - name: Cache cargo bin
-        uses: actions/cache@v4
-        with:
-          path: ~/.cargo/bin/srg
-          key: ${{ runner.os }}-cargo-bin-srg
-
+      # Always pull the latest srg from crates.io. The previous
+      # version of this workflow cached the compiled binary under a
+      # static key, which silently kept old srg around across new
+      # releases. cargo install on a fresh runner takes under a
+      # minute, so the cache complexity isn't worth it.
       - name: Install srg
-        run: |
-          if ! command -v srg >/dev/null; then
-            cargo install srg
-          fi
+        run: cargo install srg --force
 
       # Ubuntu runners ship Chrome at /usr/bin/google-chrome. srg
       # uses headless Chrome for PDF rendering and finds it via PATH.
