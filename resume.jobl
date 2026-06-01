@@ -35,10 +35,7 @@ start = "2022"
 end = "2024"
 highlights = [
   "Reduced infrastructure setup time from days to hours. Led Terraform and Kubernetes pipeline implementation. Designed reusable Terraform modules and automated Kubernetes resource creation using Node.js. Initiated Helm chart development for better deployment management.",
-  "Eliminated hours of manual work across teams. Enhanced an AngularJS web application to efficiently manage and connect to cloud-based VMs.",
   "Refactored a legacy Java-based API into a modern Node.js service. Reduced technical debt and simplified maintenance for future feature requests.",
-  "Developed CI/CD pipelines and Dockerized applications. Supported an AngularJS-to-React migration, ensuring seamless frontend transitions and improving local development environments.",
-  "Debugged and resolved mission-critical issues in cloud-based Linux VMs. Optimized RDP performance and fixed PulseAudio configurations, enhancing system stability.",
   "Mentored junior engineers. Contributed to technical interviews, fostering a culture of continuous learning and collaboration."
 ]
 
@@ -47,4 +44,19 @@ title = "Software Engineer"
 company = "Infinity Interactive"
 start = "2010"
 end = "2020"
-summary = "Contracted full-stack work for Fortune 100 and Fortune 500 companies including Shutterstock, Allegra, and Flashpoint. Built and maintained production applications across Node.js, GraphQL, React, and Vue.js stacks. Notable: improved a high-traffic application's response times by 75% via a Redis caching strategy."
+summary = "Contracted full-stack work for Fortune 100/500 clients (Shutterstock, Allegra, Flashpoint). Node.js, GraphQL, React, Vue.js. Improved a high-traffic app's response times by 75% via a Redis caching strategy."
+
+[[projects]]
+name = "claux"
+url = "https://crates.io/crates/claux"
+summary = "Terminal AI coding assistant in Rust. Streaming chat with tool execution (Read, Write, Edit, Grep, Bash, WebFetch, Agent), interactive permissions, session persistence, auto-compaction, sub-agents, multi-provider routing (Anthropic, OpenAI, Ollama), and a ratatui TUI."
+
+[[projects]]
+name = "llm-mux"
+url = "https://crates.io/crates/llm-mux"
+summary = "Multi-backend LLM router and orchestrator. Routes prompts across CLI and HTTP backends with parallel execution and multi-step workflows."
+
+[[projects]]
+name = "finna"
+url = "https://crates.io/crates/finna"
+summary = "Multi-model debate-to-implement pipeline. Three models independently propose, Claude synthesizes consensus, breaks it into dependency-ordered specs, applies edits."
